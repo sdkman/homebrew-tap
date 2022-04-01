@@ -1,9 +1,9 @@
 class SdkmanCli < Formula
   desc "Sdkman - The Software Development Kit Manager"
   homepage "https://sdkman.io"
-  url "https://github.com/sdkman/sdkman-cli/releases/download/5.14.2/sdkman-cli-5.14.2.zip"
-  version "5.14.2"
-  sha256 "b9549ae76aced4054caeaa120c777366fb464984f2a4083ef36e118409fc9717"
+  url "https://github.com/sdkman/sdkman-cli/releases/download/5.14.3/sdkman-cli-5.14.3.zip"
+  version "5.14.3"
+  sha256 "c5130c787b90ffa78470b148f90792ba376a07c93958eaba1a97da9e20239cae"
   license "Apache-2.0"
 
   def install
@@ -30,6 +30,6 @@ class SdkmanCli < Formula
   end
 
   test do
-    assert_match 5.14.2, shell_output("export SDKMAN_DIR=#{libexec} && source #{libexec}/bin/sdkman-init.sh && sdk version")
+    assert_match version, shell_output("export SDKMAN_DIR=#{libexec} && source #{libexec}/bin/sdkman-init.sh && sdk version")
   end
 end
