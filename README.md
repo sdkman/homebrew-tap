@@ -25,5 +25,5 @@ sdk version
 The output should look similar to this
 
 ```sh
-SDKMAN 5.16.1
+SDKMAN 5.17.0
 ```
