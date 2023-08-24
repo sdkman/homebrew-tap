@@ -1,4 +1,4 @@
-class SdkmanCli < Formula
+class Sdkmancli < Formula
   desc "Sdkman - The Software Development Kit Manager"
   homepage "https://sdkman.io"
   url "https://github.com/sdkman/sdkman-cli/releases/download/5.18.2/sdkman-cli-5.18.2.zip"
