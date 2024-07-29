@@ -25,5 +25,7 @@ sdk version
 The output should look similar to this
 
 ```sh
-SDKMAN 5.18.2
+SDKMAN!
+script: 5.18.2
+native: 0.4.6
 ```

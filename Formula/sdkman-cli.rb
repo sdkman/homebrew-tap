@@ -1,10 +1,20 @@
 class SdkmanCli < Formula
-  desc "Sdkman - The Software Development Kit Manager"
+  desc "SDKMAN! the Software Development Kit Manager"
   homepage "https://sdkman.io"
-  url "https://github.com/sdkman/sdkman-cli/releases/download/5.18.1/sdkman-cli-5.18.1.zip"
-  version "5.18.1"
-  sha256 "1d9d4a4c51826c8e1b92ddd54013274056a9ab610a2b2edc59827e5c92975a9d"
+  url "https://github.com/sdkman/sdkman-cli/releases/download/5.18.2/sdkman-cli-5.18.2.zip"
+  sha256 "e98d0d0501e8b8d2749a601b5dc23344ed5ad67c99beb0f4d968c2e186b4ee71"
   license "Apache-2.0"
+
+  resource "sdkman_cli_native" do
+    on_intel do
+      url "https://github.com/sdkman/sdkman-cli-native/releases/download/v0.4.6/sdkman-cli-native-0.4.6-x86_64-apple-darwin.zip"
+      sha256 "3927da764a7e70bd0f53031938cfd43fe84b613da028560b9ea05dec28dbde31"
+    end
+    on_arm do
+      url "https://github.com/sdkman/sdkman-cli-native/releases/download/v0.4.6/sdkman-cli-native-0.4.6-aarch64-apple-darwin.zip"
+      sha256 "c9f67a5ad65944a9563ff9df99dfae6fedec0814c062136178ad9dfff92734f9"
+    end
+  end
 
   def install
     libexec.install Dir["*"]
@@ -26,9 +36,21 @@ class SdkmanCli < Formula
       sdkman_rosetta2_compatible=false
       sdkman_selfupdate_feature=false
     EOS
+
+    (libexec/"var/version").write version
+    (libexec/"var/version_native").write resource("sdkman_cli_native").version
+
+    on_intel do
+      (libexec/"var/platform").write "darwinx64"
+    end
+    on_arm do
+      (libexec/"var/platform").write "darwinarm64"
+    end
+
+    libexec.install resource("sdkman_cli_native") 
   end
 
   test do
-    assert_match version, shell_output("export SDKMAN_DIR=#{libexec} && source #{libexec}/bin/sdkman-init.sh && sdk version")
+    assert_match /SDKMAN!\nscript: #{version}\nnative: #{resource("sdkman_cli_native").version}/, shell_output("export SDKMAN_DIR=#{libexec} && source #{libexec}/bin/sdkman-init.sh && sdk version")
   end
 end
