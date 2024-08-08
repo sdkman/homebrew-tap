@@ -6,13 +6,25 @@ class SdkmanCli < Formula
   license "Apache-2.0"
 
   resource "sdkman_cli_native" do
-    on_intel do
-      url "https://github.com/sdkman/sdkman-cli-native/releases/download/v0.4.6/sdkman-cli-native-0.4.6-x86_64-apple-darwin.zip"
-      sha256 "3927da764a7e70bd0f53031938cfd43fe84b613da028560b9ea05dec28dbde31"
+    on_macos do
+      on_arm do
+        url "https://github.com/sdkman/sdkman-cli-native/releases/download/v0.4.6/sdkman-cli-native-0.4.6-aarch64-apple-darwin.zip"
+        sha256 "c9f67a5ad65944a9563ff9df99dfae6fedec0814c062136178ad9dfff92734f9"
+      end
+      on_intel do
+        url "https://github.com/sdkman/sdkman-cli-native/releases/download/v0.4.6/sdkman-cli-native-0.4.6-x86_64-apple-darwin.zip"
+        sha256 "3927da764a7e70bd0f53031938cfd43fe84b613da028560b9ea05dec28dbde31"
+      end
     end
-    on_arm do
-      url "https://github.com/sdkman/sdkman-cli-native/releases/download/v0.4.6/sdkman-cli-native-0.4.6-aarch64-apple-darwin.zip"
-      sha256 "c9f67a5ad65944a9563ff9df99dfae6fedec0814c062136178ad9dfff92734f9"
+    on_linux do
+      on_arm do
+        url "https://github.com/sdkman/sdkman-cli-native/releases/download/v0.4.6/sdkman-cli-native-0.4.6-aarch64-unknown-linux-gnu.zip"
+        sha256 "720df493e86886549c49c7d0362050186dc96cf34554fbb82b45e47551492812"
+      end
+      on_intel do
+        url "https://github.com/sdkman/sdkman-cli-native/releases/download/v0.4.6/sdkman-cli-native-0.4.6-x86_64-unknown-linux-gnu.zip"
+        sha256 "27f3454d6bbbf490ca5de07922dc0eb63df4743dbd0eb2efb1db00143ca46e75"
+      end
     end
   end
 
