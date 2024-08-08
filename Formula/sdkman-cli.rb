@@ -52,11 +52,21 @@ class SdkmanCli < Formula
     (libexec/"var/version").write version
     (libexec/"var/version_native").write resource("sdkman_cli_native").version
 
-    on_intel do
-      (libexec/"var/platform").write "darwinx64"
+    on_macos do
+      on_arm do
+        (libexec/"var/platform").write "darwinarm64"
+      end
+      on_intel do
+        (libexec/"var/platform").write "darwinx64"
+      end
     end
-    on_arm do
-      (libexec/"var/platform").write "darwinarm64"
+    on_linux do
+      on_arm do
+        (libexec/"var/platform").write "linuxarm64"
+      end
+      on_intel do
+        (libexec/"var/platform").write "linuxx64"
+      end
     end
 
     libexec.install resource("sdkman_cli_native") 
