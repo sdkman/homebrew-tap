@@ -1,29 +1,29 @@
 class SdkmanCli < Formula
   desc "SDKMAN! the Software Development Kit Manager"
   homepage "https://sdkman.io"
-  url "https://github.com/sdkman/sdkman-cli/releases/download/5.18.2/sdkman-cli-5.18.2.zip"
-  sha256 "e98d0d0501e8b8d2749a601b5dc23344ed5ad67c99beb0f4d968c2e186b4ee71"
+  url "https://github.com/sdkman/sdkman-cli/releases/download/5.19.0/sdkman-cli-5.19.0.zip"
+  sha256 "3a9657b7cccc21998055520efd11c76faadaa73cac863c34094a7b9cb5eb67a9"
   license "Apache-2.0"
 
   resource "sdkman_cli_native" do
     on_macos do
       on_arm do
-        url "https://github.com/sdkman/sdkman-cli-native/releases/download/v0.4.6/sdkman-cli-native-0.4.6-aarch64-apple-darwin.zip"
-        sha256 "c9f67a5ad65944a9563ff9df99dfae6fedec0814c062136178ad9dfff92734f9"
+        url "https://github.com/sdkman/sdkman-cli-native/releases/download/v0.7.4/sdkman-cli-native-0.7.4-aarch64-apple-darwin.zip"
+        sha256 "f0eab8d5e8165510d17c1bb12699d1ce8f787d0b47cfea378a466c7457938d42"
       end
       on_intel do
-        url "https://github.com/sdkman/sdkman-cli-native/releases/download/v0.4.6/sdkman-cli-native-0.4.6-x86_64-apple-darwin.zip"
-        sha256 "3927da764a7e70bd0f53031938cfd43fe84b613da028560b9ea05dec28dbde31"
+        url "https://github.com/sdkman/sdkman-cli-native/releases/download/v0.7.4/sdkman-cli-native-0.7.4-x86_64-apple-darwin.zip"
+        sha256 "3fa846c9f92faed9568fc74b48b3f002a41315983ec8656be0f4edbbfa3844f3"
       end
     end
     on_linux do
       on_arm do
-        url "https://github.com/sdkman/sdkman-cli-native/releases/download/v0.4.6/sdkman-cli-native-0.4.6-aarch64-unknown-linux-gnu.zip"
-        sha256 "720df493e86886549c49c7d0362050186dc96cf34554fbb82b45e47551492812"
+        url "https://github.com/sdkman/sdkman-cli-native/releases/download/v0.7.4/sdkman-cli-native-0.7.4-aarch64-unknown-linux-gnu.zip"
+        sha256 "82153f4463295d0ec658278ef4dbfce0670203f7bb15c3472d0ace09301c9da5"
       end
       on_intel do
-        url "https://github.com/sdkman/sdkman-cli-native/releases/download/v0.4.6/sdkman-cli-native-0.4.6-x86_64-unknown-linux-gnu.zip"
-        sha256 "27f3454d6bbbf490ca5de07922dc0eb63df4743dbd0eb2efb1db00143ca46e75"
+        url "https://github.com/sdkman/sdkman-cli-native/releases/download/v0.7.4/sdkman-cli-native-0.7.4-x86_64-unknown-linux-gnu.zip"
+        sha256 "2ac9e1e53289c065d8442bcdb4a2a2fa6e9034c49ffd1443f5ce0937556ff6ba"
       end
     end
   end
