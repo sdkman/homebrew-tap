@@ -47,6 +47,7 @@ class SdkmanCli < Formula
       sdkman_insecure_ssl=false
       sdkman_rosetta2_compatible=false
       sdkman_selfupdate_feature=false
+      sdkman_native_enable=true
     EOS
 
     (libexec/"var/version").write version
