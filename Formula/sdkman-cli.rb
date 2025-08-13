@@ -64,4 +64,12 @@ class SdkmanCli < Formula
   test do
     assert_match /SDKMAN!\nscript: #{version}\nnative: #{resource("sdkman_cli_native").version}/, shell_output("export SDKMAN_DIR=#{libexec} && source #{libexec}/bin/sdkman-init.sh && sdk version")
   end
+
+  def caveats
+    <<~EOS
+      Add the following to your shell profile e.g. ~/.profile or ~/.zshrc:
+        export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+        [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+    EOS
+  end
 end
