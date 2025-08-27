@@ -5,11 +5,11 @@ A Homebrew tap containing the Formula for the SDKMAN! CLI.
 ## Installation
 
 ```sh
-$ brew tap sdkman/tap
-$ brew install sdkman-cli
+brew tap sdkman/tap
+brew install sdkman-cli
 ```
 
-After successful installation add the following lines to the end of your `.bash_profile`
+After successful installation add the following lines to the end of your `.bash_profile` after the `brew shellenv` line
 
 ```sh
 export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
