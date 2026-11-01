@@ -1,0 +1,53 @@
+name: Bump formula
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: bump-formula
+  cancel-in-progress: false
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      BRANCH: automation/bump-formula
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update formula to latest releases
+        id: bump
+        run: bash .github/scripts/bump-formula.sh
+
+      - name: Open or update pull request
+        if: steps.bump.outputs.changed == 'true'
+        env:
+          CLI_OLD: ${{ steps.bump.outputs.cli_old }}
+          CLI_NEW: ${{ steps.bump.outputs.cli_new }}
+          NATIVE_OLD: ${{ steps.bump.outputs.native_old }}
+          NATIVE_NEW: ${{ steps.bump.outputs.native_new }}
+        run: |
+          title="Bump sdkman-cli $CLI_NEW, sdkman-cli-native $NATIVE_NEW"
+          body="Automated bump of \`Formula/sdkman-cli.rb\`:
+          - sdkman-cli: \`$CLI_OLD\` -> \`$CLI_NEW\`
+          - sdkman-cli-native: \`$NATIVE_OLD\` -> \`$NATIVE_NEW\`"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git commit -am "$title"
+          git push --force origin "$BRANCH"
+
+          if gh pr view "$BRANCH" --json state --jq .state 2>/dev/null | grep -q OPEN; then
+            gh pr edit "$BRANCH" --title "$title" --body "$body"
+          else
+            gh pr create --base "${{ github.event.repository.default_branch }}" --head "$BRANCH" \
+              --title "$title" --body "$body"
+          fi
